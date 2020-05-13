@@ -93,7 +93,9 @@ namespace MopsBot
             try
             {
                 var stream = client.GetStream();
-                await stream.WriteAsync(bytes);
+                lock(sendLock){
+                    stream.WriteAsync(bytes).AsTask().Wait();
+                }
             }
             catch (Exception e)
             {
