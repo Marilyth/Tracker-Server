@@ -344,7 +344,8 @@ namespace MopsBot.Data
                 ChannelId = channelID,
                 Embed = embed,
                 Sender = sender.Name,
-                Notification = notification
+                Notification = notification,
+                Type = GetTrackerType()
             };
 
             await StaticBase.BotCommunication.SendMessage(JsonConvert.SerializeObject(message));
@@ -355,6 +356,6 @@ namespace MopsBot.Data
         public ulong ChannelId;
         public Embed Embed;
         public string Sender, Notification;
-        public BaseTracker.TrackerType Type;
+        public Type Type;
     }
 }
