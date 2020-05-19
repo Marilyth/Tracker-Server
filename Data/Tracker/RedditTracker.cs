@@ -147,18 +147,11 @@ namespace MopsBot.Data.Tracker
             e.Timestamp = DateTimeOffset.FromUnixTimeSeconds((long)redditPost.created_utc).DateTime.AddHours(2);
             e.Footer = footer;
 
-            try
-            {
-                if(!string.IsNullOrEmpty(redditPost.url) && redditPost.url.Contains(".jpg", StringComparison.CurrentCultureIgnoreCase) || redditPost.url.Contains(".png", StringComparison.CurrentCultureIgnoreCase)){
-                        e.ImageUrl = redditPost.url;
-                }
-                else if(!redditPost.thumbnail.Equals("self") && !redditPost.thumbnail.Equals("default") && !string.IsNullOrEmpty(redditPost.thumbnail)){
-                        e.ImageUrl = redditPost.thumbnail;
-                }
+            if(!string.IsNullOrEmpty(redditPost.url) && (redditPost.url.Contains(".jpg", StringComparison.CurrentCultureIgnoreCase) || redditPost.url.Contains(".png", StringComparison.CurrentCultureIgnoreCase))){
+                    e.ImageUrl = redditPost.url;
             }
-            catch (Exception)
-            {
-                e.ImageUrl = null;
+            else if(!string.IsNullOrEmpty(redditPost.thumbnail) && !redditPost.thumbnail.Equals("self") && !redditPost.thumbnail.Equals("default")){
+                    e.ImageUrl = redditPost.thumbnail;
             }
 
             e.AddField("Score", redditPost.score, true);
