@@ -59,20 +59,20 @@ namespace MopsBot
                 Tweetinvi.Logic.JsonConverters.JsonPropertyConverterRepository.JsonConverters.Add(typeof(Tweetinvi.Models.Language), new CustomJsonLanguageConverter());
 
                 Trackers = new Dictionary<BaseTracker.TrackerType, Data.TrackerWrapper>();
-                /*Trackers[BaseTracker.TrackerType.Twitter] = new TrackerHandler<TwitterTracker>(1800000);
-                Trackers[BaseTracker.TrackerType.Youtube] = new TrackerHandler<YoutubeTracker>(3600000);
+                //Trackers[BaseTracker.TrackerType.Twitter] = new TrackerHandler<TwitterTracker>(1800000);
+                //Trackers[BaseTracker.TrackerType.Youtube] = new TrackerHandler<YoutubeTracker>(3600000);
                 Trackers[BaseTracker.TrackerType.Twitch] = new TrackerHandler<TwitchTracker>(3600000);
-                Trackers[BaseTracker.TrackerType.YoutubeLive] = new TrackerHandler<YoutubeLiveTracker>(900000);
-                Trackers[BaseTracker.TrackerType.Mixer] = new TrackerHandler<MixerTracker>();
-                Trackers[BaseTracker.TrackerType.Reddit] = new TrackerHandler<RedditTracker>();
-                Trackers[BaseTracker.TrackerType.JSON] = new TrackerHandler<JSONTracker>(updateInterval: 600000);
-                Trackers[BaseTracker.TrackerType.Osu] = new TrackerHandler<OsuTracker>();
-                Trackers[BaseTracker.TrackerType.Overwatch] = new TrackerHandler<OverwatchTracker>(3600000);
-                Trackers[BaseTracker.TrackerType.TwitchClip] = new TrackerHandler<TwitchClipTracker>();
-                Trackers[BaseTracker.TrackerType.OSRS] = new TrackerHandler<OSRSTracker>();
-                Trackers[BaseTracker.TrackerType.HTML] = new TrackerHandler<HTMLTracker>();
-                Trackers[BaseTracker.TrackerType.RSS] = new TrackerHandler<RSSTracker>(3600000);
-                Trackers[BaseTracker.TrackerType.Steam] = new TrackerHandler<SteamTracker>();*/
+                //Trackers[BaseTracker.TrackerType.YoutubeLive] = new TrackerHandler<YoutubeLiveTracker>(900000);
+                //Trackers[BaseTracker.TrackerType.Mixer] = new TrackerHandler<MixerTracker>();
+                //Trackers[BaseTracker.TrackerType.Reddit] = new TrackerHandler<RedditTracker>();
+                //Trackers[BaseTracker.TrackerType.JSON] = new TrackerHandler<JSONTracker>(updateInterval: 600000);
+                //Trackers[BaseTracker.TrackerType.Osu] = new TrackerHandler<OsuTracker>();
+                //Trackers[BaseTracker.TrackerType.Overwatch] = new TrackerHandler<OverwatchTracker>(3600000);
+                //Trackers[BaseTracker.TrackerType.TwitchClip] = new TrackerHandler<TwitchClipTracker>();
+                //Trackers[BaseTracker.TrackerType.OSRS] = new TrackerHandler<OSRSTracker>();
+                //Trackers[BaseTracker.TrackerType.HTML] = new TrackerHandler<HTMLTracker>();
+                //Trackers[BaseTracker.TrackerType.RSS] = new TrackerHandler<RSSTracker>(3600000);
+                //Trackers[BaseTracker.TrackerType.Steam] = new TrackerHandler<SteamTracker>();*/
 
                 BotCommunication.StartServer();
 

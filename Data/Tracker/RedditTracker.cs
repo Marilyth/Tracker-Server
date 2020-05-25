@@ -148,10 +148,10 @@ namespace MopsBot.Data.Tracker
             e.Footer = footer;
 
             if(!string.IsNullOrEmpty(redditPost.url) && (redditPost.url.Contains(".jpg", StringComparison.CurrentCultureIgnoreCase) || redditPost.url.Contains(".png", StringComparison.CurrentCultureIgnoreCase))){
-                    e.ImageUrl = redditPost.url;
+                e.ImageUrl = redditPost.url;
             }
             else if(!string.IsNullOrEmpty(redditPost.thumbnail) && !redditPost.thumbnail.Equals("self") && !redditPost.thumbnail.Equals("default")){
-                    e.ImageUrl = redditPost.thumbnail;
+                e.ImageUrl = redditPost.thumbnail;
             }
 
             e.AddField("Score", redditPost.score, true);
