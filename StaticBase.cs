@@ -74,8 +74,6 @@ namespace MopsBot
                 //Trackers[BaseTracker.TrackerType.RSS] = new TrackerHandler<RSSTracker>(3600000);
                 //Trackers[BaseTracker.TrackerType.Steam] = new TrackerHandler<SteamTracker>();*/
 
-                BotCommunication.StartServer();
-
                 foreach (var tracker in Trackers)
                 {
                     var trackerType = tracker.Key;
@@ -102,6 +100,8 @@ namespace MopsBot
                     Program.MopsLog(new LogMessage(LogSeverity.Info, "Tracker init", $"Initialising {trackerType.ToString()}"));
                     Task.Delay((int)(60000 / Trackers.Count)).Wait();
                 }
+
+                BotCommunication.StartServer();
             }
         }
 

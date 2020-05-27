@@ -60,11 +60,11 @@ namespace MopsBot
 
         public async Task WaitForMessage()
         {
-            try
+            var clientIP = $"{(client.Client.RemoteEndPoint as IPEndPoint).Address}:{(client.Client.RemoteEndPoint as IPEndPoint).Port}";
+            string clientStream = "";
+            while (true)
             {
-                var clientIP = $"{(client.Client.RemoteEndPoint as IPEndPoint).Address}:{(client.Client.RemoteEndPoint as IPEndPoint).Port}";
-                string clientStream = "";
-                while (true)
+                try
                 {
                     clientStream += await ObtainFromClient();
                     var messages = findMessages(clientStream, out clientStream);
@@ -74,12 +74,17 @@ namespace MopsBot
                         await ReceivedMessage(message);
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                await Program.MopsLog(new Discord.LogMessage(Discord.LogSeverity.Critical, "", $"Connection failed", e));
+                catch (Exception e)
+                {
+                    await Program.MopsLog(new Discord.LogMessage(Discord.LogSeverity.Critical, "", $"Connection failed", e));
+                    if(!SocketConnected(client.Client)){
+                        client = null;
+                        return;
+                    }
+                }
             }
         }
+
 
         private int eventId = 0;
         private object sendLock = new Object();
@@ -131,7 +136,7 @@ namespace MopsBot
                     {
                         case "ADD":
                             await StaticBase.Trackers[trackerType].AddTrackerAsync(args[3], ulong.Parse(args[2]), args[4]);
-                            result = "Added successfully";
+                            result = "Added the tracker successfully";
                             break;
                         case "REMOVE":
                             var worked = await StaticBase.Trackers[trackerType].TryRemoveTrackerAsync(args[2], ulong.Parse(args[3]));
@@ -143,7 +148,7 @@ namespace MopsBot
                 }
                 catch (Exception e)
                 {
-                    result += e.Message;
+                    result = e.InnerException.Message;
                 }
                 await SendMessage($"ACKNOWLEDGED REQUEST {message.Id}\n{result}", false);
             }
